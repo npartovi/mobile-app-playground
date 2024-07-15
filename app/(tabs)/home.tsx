@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 
 import { images } from '../../constants'
 import SearchInput from '@/components/SearchInput'
-import Trending from '@/components/Trending'
+import TrendingTest from '@/components/TrendingTest'
 import EmptyState from '@/components/EmptyState'
 import { RefreshControl } from 'react-native-gesture-handler'
 import { getAllPosts, getLatestPosts } from '@/lib/appwrite'
@@ -64,7 +64,7 @@ const Home = () => {
                 Latest Videos
               </Text>
 
-              <Trending posts={latestPosts ?? []} />
+              <TrendingTest posts={latestPosts ?? []} />
             </View>
           </View>
         )}
