@@ -130,9 +130,29 @@ export const searchPosts = async (query: string) => {
   try {
     const posts = await databases.listDocuments(databaseId, videoCollectionId, [
       Query.search('title', query),
-      Query.limit(7),
     ])
     return posts.documents
+  } catch (error: any) {
+    throw new Error(error)
+  }
+}
+
+export const getUserPosts = async (userId: string) => {
+  try {
+    const posts = await databases.listDocuments(databaseId, videoCollectionId, [
+      Query.equal('users', userId),
+    ])
+
+    return posts.documents
+  } catch (error: any) {
+    throw new Error(error)
+  }
+}
+
+export const signOut = async () => {
+  try {
+    const sessions = await account.deleteSession('current')
+    return sessions
   } catch (error: any) {
     throw new Error(error)
   }

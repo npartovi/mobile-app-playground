@@ -11,6 +11,7 @@ import { Models } from 'react-native-appwrite'
 import useAppWrite from '@/lib/useAppwrite'
 import VideoCard from '@/components/VideoCard'
 import Trending from '@/components/Trending'
+import { useGlobalContext } from '@/context/GlobalProvider'
 
 type Video = {
   title: string
@@ -23,6 +24,7 @@ type Video = {
 } & Models.Document
 
 const Home = () => {
+  const { user } = useGlobalContext()
   const [refreshing, setRefreshing] = useState(false)
   const { data: posts, refetch } = useAppWrite({ fn: getAllPosts })
   const { data: latestPosts } = useAppWrite({ fn: getLatestPosts })
@@ -47,7 +49,7 @@ const Home = () => {
                   Welcome Back
                 </Text>
                 <Text className="text-2xl font-psemibold text-white">
-                  Nima Partovi
+                  {user.username}
                 </Text>
               </View>
               <View className="mt-1.5">
